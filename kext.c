@@ -1,5 +1,5 @@
-#include <stdlib.h> //atexit
-#include <unistd.h> //read and STDIN_FILENO
+#include <stdlib.h> 
+#include <unistd.h>
 #include <termios.h>
 #include <ctype.h>
 #include <stdio.h>
@@ -26,10 +26,9 @@ void enableRawMode()
     raw.c_cflag |= (CS8);
     raw.c_lflag &= ~(ECHO | ICANON | IEXTEN | ISIG);
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+
     /*
         Terminal attributes can be read into a termios struct by tcgetattr(). After modifying them, you can then apply them to the terminal using tcsetattr(). The TCSAFLUSH argument specifies when to apply the change: in this case, it waits for all pending output to be written to the terminal, and also discards any input that hasn’t been read.
-
-
     */
 }
 
